@@ -1,23 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useEffect, useRef } from 'react';
+import * as d3 from 'd3'; // Import everything from D3
+
 
 function App() {
+  const svgRef = useRef(null);
+
+
+  useEffect(() => {
+    const svg = d3.select(svgRef.current);
+
+    svg.append('circle')
+      .attr('cx', 100) // Center X coordinate
+      .attr('cy', 50)  // Center Y coordinate
+      .attr('r', 40)   // Radius
+      .attr('fill', 'blue');
+
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <svg ref={svgRef} width={200} height={100}>
+      </svg>
     </div>
   );
 }
